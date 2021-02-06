@@ -1,0 +1,38 @@
+.landingContainer {
+    display: grid;
+    min-height: 100vh;
+    grid-template-rows: auto 1fr auto;
+    background-color: #fafafa;
+}
+
+.landingMain {
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 100px;
+}
+
+.authTabs {
+    padding: 30px 10px;
+}
+
+.calendarImage {
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 998px) {
+    .landingMain {
+        padding: 0;
+        justify-content: start;
+    }
+
+    .authTabs {
+        padding: 50px 0;
+    }
+
+    .imageContainer {
+        display: none;
+    }
+}

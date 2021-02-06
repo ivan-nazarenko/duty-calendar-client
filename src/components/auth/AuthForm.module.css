@@ -1,0 +1,20 @@
+ .loginForm {
+     width: 300px;
+ }
+
+ .submitContainer {
+     margin-top: 15px;
+     margin-bottom: 15px;
+ }
+
+ .loginFormButton {
+     width: 100%;
+ }
+
+ .registerLink {
+     text-align: center;
+ }
+
+ .loginError {
+     margin-bottom: 1.5em;
+ }

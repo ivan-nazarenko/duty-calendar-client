@@ -1,0 +1,19 @@
+.confirmationContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #fafafa;
+    padding: 0 30px;
+}
+
+.confirmationContainer span {
+    text-align: center;
+    font-size: 30px;
+}
+
+.icon svg {
+    font-size: 80px;
+    margin-bottom: 30px;
+}
