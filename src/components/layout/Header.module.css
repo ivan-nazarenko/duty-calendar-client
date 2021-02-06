@@ -1,0 +1,22 @@
+.homeHeader {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    padding: 20px 100px;
+}
+
+.brand {
+    font-size: 30px;
+    font-weight: 900;
+}
+
+.user {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+}
+
+.user button {
+    margin-left: 10px;
+}
