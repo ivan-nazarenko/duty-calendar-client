@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from 'antd';
-import { CalendarOutlined, OrderedListOutlined, ExportOutlined } from '@ant-design/icons';
+import { CalendarOutlined, OrderedListOutlined, ExportOutlined, MenuOutlined } from '@ant-design/icons';
 import styles from './Header.module.css';
 import NavBar from './Navbar';
+import SideMenu from './SideMenu';
 
 type HeaderProps = {
     email: string;
@@ -23,10 +24,26 @@ const links = [
 ];
 
 const Header = ({ email, onLogout }: HeaderProps) => {
+    const [isMenuVisible, setMenuVisible] = useState(false);
+
+    const onMenuOpen = () => {
+        setMenuVisible(true);
+    };
+
+    const onMenuClose = () => {
+        setMenuVisible(false);
+    }
+
     return (
         <header className={styles.homeHeader}>
+            <Button
+                className={styles.sideMenuButton}
+                icon={<MenuOutlined />}
+                size='large'
+                onClick={onMenuOpen}
+            />
             <span className={styles.brand}>
-                Duty Calendar
+                DutyCalendar
             </span>
             <NavBar links={links} />
             <span className={styles.user}>
@@ -38,6 +55,13 @@ const Header = ({ email, onLogout }: HeaderProps) => {
                     onClick={onLogout}
                 />
             </span>
+            <SideMenu
+                visible={isMenuVisible}
+                onClose={onMenuClose}
+                email={email}
+                links={links}
+                onLogout={onLogout}
+            />
         </header>
     );
 };

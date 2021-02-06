@@ -3,6 +3,11 @@
     align-items: center;
     align-content: center;
     padding: 20px 100px;
+    background-color: #fff;
+}
+
+.sideMenuButton {
+    display: none;
 }
 
 .brand {
@@ -19,4 +24,26 @@
 
 .user button {
     margin-left: 10px;
+}
+
+@media (max-width: 991px) {
+    .homeHeader {
+        padding: 20px 10px;
+    }
+
+    .brand {
+        padding: 0 20px;
+    }
+
+    .homeHeader nav {
+        display: none;
+    }
+
+    .user {
+        display: none;
+    }
+
+    .sideMenuButton {
+        display: block;
+    }
 }
