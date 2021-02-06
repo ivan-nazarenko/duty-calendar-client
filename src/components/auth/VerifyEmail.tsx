@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Redirect } from 'react-router-dom';
-import AuthService from '../../services/AuthService';
+import AuthService from '../../services/auth.service';
 
 type VerificationData = {
     code: string;

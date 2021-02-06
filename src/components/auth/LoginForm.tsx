@@ -3,7 +3,7 @@ import { Form, Input, Button, Alert } from 'antd';
 import { MailOutlined, LockOutlined } from '@ant-design/icons';
 import { Link, useHistory } from 'react-router-dom';
 import styles from './AuthForm.module.css';
-import AuthService from '../../services/AuthService';
+import AuthService from '../../services/auth.service';
 
 const validationMessages = {
     types: {

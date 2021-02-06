@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import styles from './Landing.module.css';
 import LoginForm from '../components/auth/LoginForm';
 import RegistrationForm from '../components/auth/RegistrationForm';
-import AuthService from '../services/AuthService';
+import AuthService from '../services/auth.service';
 
 const { TabPane } = Tabs;
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import Header from '../components/layout/Header';
-import AuthService from '../services/AuthService';
+import AuthService from '../services/auth.service';
 
 const Home = () => {
     const history = useHistory();

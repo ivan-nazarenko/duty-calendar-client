@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import EmailConfirmation from '../pages/EmailConfirmation';
-import AuthService from '../services/AuthService';
+import AuthService from '../services/auth.service';
 
 type AuthProps = {
     children?: React.ReactNode;
