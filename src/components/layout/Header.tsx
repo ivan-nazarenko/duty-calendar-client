@@ -49,7 +49,7 @@ const Header = ({ email, onLogout }: HeaderProps) => {
             <span className={styles.user}>
                 {email}
                 <Button
-                    size='large'
+                    size='middle'
                     type="default"
                     icon={<ExportOutlined />}
                     onClick={onLogout}
