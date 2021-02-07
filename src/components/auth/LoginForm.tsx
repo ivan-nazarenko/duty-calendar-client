@@ -4,12 +4,7 @@ import { MailOutlined, LockOutlined } from '@ant-design/icons';
 import { Link, useHistory } from 'react-router-dom';
 import styles from './AuthForm.module.css';
 import AuthService from '../../services/auth.service';
-
-const validationMessages = {
-    types: {
-        email: 'Введіть валідний email',
-    }
-}
+import { validationMessages } from '../../helpers/intex';
 
 type LoginData = {
     email: string;

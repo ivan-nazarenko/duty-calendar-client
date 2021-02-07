@@ -4,17 +4,13 @@ import { MailOutlined, LockOutlined } from '@ant-design/icons';
 import { Link, useHistory } from 'react-router-dom';
 import styles from './AuthForm.module.css';
 import AuthService from '../../services/auth.service';
+import { validationMessages } from '../../helpers/intex';
 
-const validationMessages = {
-    types: {
-        email: 'Введіть валідний email',
-    }
-}
 
 type User = {
     email: string;
     password: string;
-}
+};
 
 const RegistrationForm = () => {
     let history = useHistory();
