@@ -1,7 +1,7 @@
 export interface ListMember {
     firstName: string;
     lastName: string;
-    email: string;
+    email?: string | null;
 }
 
 export interface List {

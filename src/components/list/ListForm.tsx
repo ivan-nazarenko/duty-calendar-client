@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Form, Input, Button, Space, Row, Col, Divider } from 'antd';
 import { MinusCircleOutlined, PlusOutlined, SaveOutlined } from '@ant-design/icons';
 import styles from './ListForm.module.css';
@@ -6,15 +6,27 @@ import { List } from '../../interfaces';
 import { validationMessages } from '../../helpers/intex';
 
 type ListFormProps = {
-    initialData?: List;
+    initialData: List | null;
     onSubmit: (list: List) => void;
 }
 
 const ListForm = ({ initialData, onSubmit }: ListFormProps) => {
+    const [form] = Form.useForm();
+
+    useEffect(() => {
+        if (initialData) {
+            form.setFieldsValue({
+                name: initialData.name,
+                members: initialData.members
+            });
+        }
+    }, [initialData]);
+
     return (
         <div className={styles.listForm}>
             <Form
                 name="list"
+                form={form}
                 onFinish={onSubmit}
                 autoComplete="off"
                 validateMessages={validationMessages}
@@ -50,20 +62,30 @@ const ListForm = ({ initialData, onSubmit }: ListFormProps) => {
                                 type="default"
                                 htmlType="submit"
                                 icon={<SaveOutlined />}
-                            >
-                            </Button>
+                            />
                         </Form.Item>
                     </Col>
                 </Row>
 
                 <Divider />
 
-                <Form.List name="members">
+                <Form.List
+                    name="members"
+                    rules={[
+                        {
+                            validator: async (_, members) => {
+                                if (!members || members.length < 1) {
+                                    return Promise.reject(new Error('Додайте як мінімум одного чергового'));
+                                }
+                            },
+                        },
+                    ]}
+                >
                     {(fields, { add, remove }) => (
                         <>
                             {fields.map(field => (
                                 <Row key={field.key} style={{ display: 'flex', marginBottom: 8 }} gutter={5} >
-                                    <Col xs={12}  sm={12} lg={7}>
+                                    <Col xs={12} sm={12} lg={7}>
                                         <Form.Item
                                             {...field}
                                             name={[field.name, 'firstName']}
@@ -100,10 +122,6 @@ const ListForm = ({ initialData, onSubmit }: ListFormProps) => {
                                             fieldKey={[field.fieldKey, 'email']}
                                             rules={[
                                                 {
-                                                    required: true,
-                                                    message: 'Введіть email'
-                                                },
-                                                {
                                                     type: 'email',
                                                 }
                                             ]}
@@ -112,13 +130,13 @@ const ListForm = ({ initialData, onSubmit }: ListFormProps) => {
                                         </Form.Item>
                                     </Col>
                                     <Col xs={1} sm={1} lg={1}>
-                                        <MinusCircleOutlined onClick={() => remove(field.name)} />
+                                        <MinusCircleOutlined className={styles.deleteMember} onClick={() => remove(field.name)} />
                                     </Col>
                                 </Row>
                             ))}
                             <Form.Item>
                                 <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
-                                    Додати користувача
+                                    Додати чергового
                                 </Button>
                             </Form.Item>
                         </>
