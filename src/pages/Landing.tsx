@@ -14,7 +14,7 @@ const Landing = () => {
 
     useEffect(() => {
         if(AuthService.getCurrentUser()) {
-            history.push('/home');
+            history.push('/home/calendar');
         }
     }, []);
 

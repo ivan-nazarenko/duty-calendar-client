@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ListForm from '../components/list/ListForm';
 import { List as IList, ListMember } from '../interfaces';
-import { Spin } from 'antd';
+import { Spin, notification } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { createList, editList, getList } from '../services/list.service';
 import styles from './List.module.css';
@@ -9,6 +9,7 @@ import styles from './List.module.css';
 const List = () => {
     const [list, setList] = useState<IList | null>(null);
     const [loading, setLoading] = useState(false);
+    const [listLoading, setListLoading] = useState(false);  
 
     useEffect(() => {
         (async () => {
@@ -31,28 +32,33 @@ const List = () => {
             }
         });
 
-        setLoading(true);
+        setListLoading(true);
 
         try {
             const res = !list ? await createList(list) : await editList(list);
-            setList(res.data as IList);
-            setLoading(false);
-
+            setListLoading(false);
+            notification.success({
+                message: 'Зміни збережено'
+            });
         } catch (err) {
-            setLoading(false);
-            console.log(err);
+            setListLoading(false);
+            notification.error({
+                message: 'Під час збереження даних сталася помилка :('
+            });
         }
     };
 
     return (
         <div>
-            <h1>Список чергових</h1>
             {
                 loading ?
                     <div className={styles.spinner}>
                         <Spin indicator={<LoadingOutlined style={{ fontSize: 30 }} spin />} />
                     </div> :
-                    <ListForm initialData={list} onSubmit={onSubmit} />
+                    <>
+                        <h1>Список чергових</h1>
+                        <ListForm initialData={list} onSubmit={onSubmit} loading={listLoading} />
+                    </>
             }
         </div>
     );
