@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { Result } from 'antd';
 import VerifyEmail from '../components/auth/VerifyEmail';
 import WithAuth from '../middlewares/WithAuth';
 import Home from '../pages/Home';
@@ -22,6 +23,13 @@ const index = () => {
                     <Home />
                 </Route>
             </WithAuth>
+            <Route to="*">
+                <Result
+                    status="404"
+                    title="404"
+                    subTitle="Сторінку не знайдено!"
+                />,
+            </Route>
         </Switch>
     );
 };
