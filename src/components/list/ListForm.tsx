@@ -6,11 +6,12 @@ import { List } from '../../interfaces';
 import { validationMessages } from '../../helpers/intex';
 
 type ListFormProps = {
+    loading: boolean;
     initialData: List | null;
     onSubmit: (list: List) => void;
 }
 
-const ListForm = ({ initialData, onSubmit }: ListFormProps) => {
+const ListForm = ({ initialData, onSubmit, loading }: ListFormProps) => {
     const [form] = Form.useForm();
 
     useEffect(() => {
@@ -62,6 +63,7 @@ const ListForm = ({ initialData, onSubmit }: ListFormProps) => {
                                 type="default"
                                 htmlType="submit"
                                 icon={<SaveOutlined />}
+                                loading={loading}
                             />
                         </Form.Item>
                     </Col>
