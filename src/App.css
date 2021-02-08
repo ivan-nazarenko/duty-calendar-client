@@ -1,0 +1,8 @@
+.rbc-toolbar {
+    display: none !important;
+}
+
+.rbc-event {
+    background-color: var(--hover-color);
+    border-radius: 0;
+}
