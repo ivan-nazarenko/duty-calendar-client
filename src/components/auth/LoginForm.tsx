@@ -21,8 +21,7 @@ const LoginForm = () => {
 
         try {
             await  AuthService.login(email, password);
-            history.push("/");
-            window.location.reload();
+            history.push("/home/calendar");
         } catch {
             setLoading(false);
             setError(true);

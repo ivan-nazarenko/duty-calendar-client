@@ -25,7 +25,6 @@ const RegistrationForm = () => {
             await AuthService.register(email, password);
             await AuthService.login(email, password);
             history.push("/email-confirmation");
-            window.location.reload();
         } catch {
             setLoading(false);
             setError(true);
