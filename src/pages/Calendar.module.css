@@ -1,0 +1,13 @@
+.calendarContainer {
+    width: 80%;
+}
+
+.calendarContainer .rbc-toolbar {
+    display: none !important;
+}
+
+@media (max-width: 768px) {
+    .calendarContainer {
+        width: 100%;
+    }
+}

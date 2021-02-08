@@ -5,6 +5,7 @@ import Header from '../components/layout/Header';
 import ListForm from '../components/list/ListForm';
 import AuthService from '../services/auth.service';
 import List from './List';
+import Calendar from './Calendar';
 
 const Home = () => {
     const history = useHistory();
@@ -21,7 +22,7 @@ const Home = () => {
             <Content>
                 <Switch>
                     <Route path="/home/calendar">
-                        test
+                        <Calendar />
                     </Route>
                     <Route path="/home/list">
                         <List />
