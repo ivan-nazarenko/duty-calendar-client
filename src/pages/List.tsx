@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ListForm from '../components/list/ListForm';
-import { List as IList } from '../interfaces';
+import { List as IList, ListMember } from '../interfaces';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { createList, editList, getList } from '../services/list.service';
@@ -15,6 +15,7 @@ const List = () => {
             setLoading(true);
             try {
                 const list = await getList();
+                list.data.members.sort((a: ListMember, b: ListMember) => (a.id as number) - (b.id as number));
                 setList(list.data as IList);
                 setLoading(false);
             } catch {
