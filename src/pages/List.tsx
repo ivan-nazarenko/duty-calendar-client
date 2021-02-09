@@ -25,17 +25,18 @@ const List = () => {
         })();
     }, []);
 
-    const onSubmit = async (list: IList) => {
-        list.members.forEach((item, i) => {
+    const onSubmit = async (newList: IList) => {
+        newList.members.forEach((item, i) => {
             if (!item.email) {
-                delete list.members[i].email;
+                delete newList.members[i].email;
             }
         });
 
         setListLoading(true);
 
         try {
-            const res = !list ? await createList(list) : await editList(list);
+            !list ? await createList(newList) : await editList(newList);
+            setList(newList);
             setListLoading(false);
             notification.success({
                 message: 'Зміни збережено'

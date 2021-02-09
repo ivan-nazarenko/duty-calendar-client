@@ -3,7 +3,8 @@ export const authHeader = () => {
 
     if (user && JSON.parse(user).accessToken) {
         return { 
-            "auth": JSON.parse(user).accessToken 
+            "auth": JSON.parse(user).accessToken,
+            "Access-Control-Allow-Origin": "*"
         };
     } else {
         return {};
