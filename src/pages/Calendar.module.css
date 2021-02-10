@@ -6,8 +6,17 @@
     display: none !important;
 }
 
+.сalendarBox {
+    height: 600px;
+}
+
 @media (max-width: 768px) {
     .calendarContainer {
         width: 100%;
+    }
+
+    .сalendarBox {
+        height: auto;
+        padding-bottom: 10px;
     }
 }

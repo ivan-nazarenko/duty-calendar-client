@@ -58,7 +58,7 @@ const Calendar = () => {
                         title
                 }
             </h1>
-            <div style={{ height: 600 }}>
+            <div className={styles.сalendarBox}>
                 {
                     loading ?
                         <Spin indicator={<LoadingOutlined style={{ fontSize: 30 }} spin />} /> :
