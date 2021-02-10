@@ -1,5 +1,5 @@
 export const authHeader = () => {
-    let user = sessionStorage.getItem("user");
+    let user = localStorage.getItem("user");
 
     if (user && JSON.parse(user).accessToken) {
         return { 

@@ -24,7 +24,7 @@ const RegistrationForm = () => {
         try {
             await AuthService.register(email, password);
             await AuthService.login(email, password);
-            history.push("/email-confirmation");
+            history.push("/home/calendar");
         } catch {
             setLoading(false);
             setError(true);

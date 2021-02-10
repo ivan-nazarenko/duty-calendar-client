@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 const API_URL = `https://duty-calendar-api.herokuapp.com/auth/`;
 
@@ -11,7 +11,7 @@ class AuthService {
             })
             .then(response => {
                 if (response.data.accessToken) {
-                    sessionStorage.setItem("user", JSON.stringify(response.data));
+                    localStorage.setItem("user", JSON.stringify(response.data));
                 }
 
                 return response.data;
@@ -19,7 +19,7 @@ class AuthService {
     }
 
     static logout() {
-        sessionStorage.removeItem("user");
+        localStorage.removeItem("user");
     }
 
     static register(email: string, password: string) {
@@ -37,13 +37,19 @@ class AuthService {
     }
 
     static getCurrentUser() {
-        let user = sessionStorage.getItem("user");
+        let user = localStorage.getItem("user");
 
         if (user) {
             return JSON.parse(user);
         } else {
             return null;
         }
+    }
+
+    static setVerified() {
+        let user = this.getCurrentUser();
+        user.verified = true;
+        localStorage.setItem("user", JSON.stringify(user));
     }
 }
 

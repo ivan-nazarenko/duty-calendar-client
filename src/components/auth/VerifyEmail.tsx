@@ -18,6 +18,7 @@ const VerifyEmail = () => {
         (async () => {
             try {
                 await AuthService.verifyEmail(code, id);
+                AuthService.setVerified();
                 setVerified(true);
                 setLoading(false);
             } catch {
@@ -40,8 +41,8 @@ const VerifyEmail = () => {
                                 extra={
                                     <Button type="primary">
                                         <Link to="/">
-                                            Увійти
-                                </Link>
+                                            На головну
+                                        </Link>
                                     </Button>
                                 }
                             /> :
@@ -52,8 +53,8 @@ const VerifyEmail = () => {
                                 extra={[
                                     <Button type="primary" key="console">
                                         <Link to="/">
-                                            На головну
-                                </Link>
+                                            Увійти
+                                        </Link>
                                     </Button>
                                 ]}
                             />)
