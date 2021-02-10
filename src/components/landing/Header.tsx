@@ -1,11 +1,7 @@
 import React from 'react';
 import styles from './Header.module.css';
 
-type HeaderProps = {
-    authentificated?: boolean;
-}
-
-const Header = ({ authentificated }: HeaderProps) => {
+const Header = () => {
     return (
         <header className={styles.headerContainer}>
             <span className={styles.brand}>

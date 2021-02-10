@@ -41,6 +41,8 @@ const Header = ({ email, onLogout }: HeaderProps) => {
                 icon={<MenuOutlined />}
                 size='large'
                 onClick={onMenuOpen}
+                type="link"
+                color="black"
             />
             <span className={styles.brand}>
                 DutyCalendar

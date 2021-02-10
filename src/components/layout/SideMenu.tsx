@@ -19,7 +19,11 @@ type SideMenuProps = {
 const SideMenu = ({ visible, email, onLogout, onClose, links }: SideMenuProps) => {
     return (
         <Drawer
-            title={email}
+            title={
+                <span className={styles.brand}>
+                    DutyCalendar
+                </span>
+            }
             visible={visible}
             onClose={onClose}
             closable={true}
@@ -37,10 +41,13 @@ const SideMenu = ({ visible, email, onLogout, onClose, links }: SideMenuProps) =
                         </li>
                     ))
                 }
-                <li className={styles.logOut} key={links.length} onClick={onLogout}>
-                    <ExportOutlined />
-                    <span>
-                        Вихід
+                <li className={styles.logOut} key={links.length}>
+                    <div>
+                        {email}
+                    </div>
+                    <span onClick={onLogout}>
+                        <ExportOutlined />
+                        Вийти
                     </span>
                 </li>
             </ul>
