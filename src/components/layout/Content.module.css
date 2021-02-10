@@ -1,5 +1,18 @@
 .content {
     display: flex;
     justify-content: center;
-    padding: 0 20px;
+    padding: 0 200px;
+}
+
+@media (max-width: 1200px) {
+    .content {
+        padding: 0 50px;
+    }
+}
+
+
+@media (max-width: 991px) {
+    .content {
+        padding: 0 15px;
+    }
 }

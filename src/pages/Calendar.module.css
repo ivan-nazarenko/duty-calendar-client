@@ -1,5 +1,5 @@
 .calendarContainer {
-    width: 80%;
+    width: 100%;
 }
 
 .calendarContainer .rbc-toolbar {
@@ -8,6 +8,10 @@
 
 .сalendarBox {
     height: 600px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 1px 3px rgba(57, 63, 72, 0.1);
+    -moz-box-shadow: 0 1px 3px rgba(57, 63, 72, 0.1);
+    box-shadow: 0 1px 3px rgba(57, 63, 72, 0.1);
 }
 
 @media (max-width: 768px) {
