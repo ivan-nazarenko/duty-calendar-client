@@ -4,6 +4,7 @@
     -webkit-box-shadow: 0 1px 3px rgba(57, 63, 72, 0.1);
     -moz-box-shadow: 0 1px 3px rgba(57, 63, 72, 0.1);
     box-shadow: 0 1px 3px rgba(57, 63, 72, 0.1);
+    width: 573px;
 }
 
 .deleteMember {
@@ -13,5 +14,11 @@
 @media (max-width: 991px) {
     .listForm {
         padding: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .listForm {
+        width: auto;
     }
 }
