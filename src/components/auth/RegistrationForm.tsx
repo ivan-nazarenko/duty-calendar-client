@@ -69,6 +69,10 @@ const RegistrationForm = () => {
                         {
                             min: 6,
                             message: 'Мінімальна довжина 6 символів'
+                        },
+                        {
+                            max: 99,
+                            message: 'Максимальна довжина 100 символів'
                         }
                     ]}
                     hasFeedback

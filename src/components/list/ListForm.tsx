@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
-import { Form, Input, Button, Space, Row, Col, Divider } from 'antd';
+import { Form, Input, Button, Space, Row, Col, Divider, notification } from 'antd';
 import { MinusCircleOutlined, PlusOutlined, SaveOutlined } from '@ant-design/icons';
 import styles from './ListForm.module.css';
 import { List } from '../../interfaces';
 import { validationMessages } from '../../helpers/intex';
+
+const MAX_MEMBERS = 100;
 
 type ListFormProps = {
     loading: boolean;
@@ -51,6 +53,10 @@ const ListForm = ({ initialData, onSubmit, loading }: ListFormProps) => {
                                     required: true,
                                     message: 'Будь ласка, введіть назву'
                                 },
+                                {
+                                    max: 99,
+                                    message: 'Максимальна довжина 100 символів'
+                                }
                             ]}
                         >
                             <Input size='large' placeholder="Назва" />
@@ -77,7 +83,14 @@ const ListForm = ({ initialData, onSubmit, loading }: ListFormProps) => {
                         {
                             validator: async (_, members) => {
                                 if (!members || members.length < 1) {
+                                    notification.error({
+                                        message: "Додайте як мінімум одного чергового"
+                                    });
                                     return Promise.reject(new Error('Додайте як мінімум одного чергового'));
+                                } else if (members.length > MAX_MEMBERS) {
+                                    notification.error({
+                                        message: "Максимальна кількість чергових - 100"
+                                    });
                                 }
                             },
                         },
@@ -90,31 +103,39 @@ const ListForm = ({ initialData, onSubmit, loading }: ListFormProps) => {
                                     <Col xs={12} sm={12} lg={7}>
                                         <Form.Item
                                             {...field}
-                                            name={[field.name, 'firstName']}
-                                            fieldKey={[field.fieldKey, 'firstName']}
-                                            rules={[
-                                                {
-                                                    required: true,
-                                                    message: 'Введіть ім\'я'
-                                                }
-                                            ]}
-                                        >
-                                            <Input placeholder="Ім'я" />
-                                        </Form.Item>
-                                    </Col>
-                                    <Col xs={12} sm={12} lg={7}>
-                                        <Form.Item
-                                            {...field}
                                             name={[field.name, 'lastName']}
                                             fieldKey={[field.fieldKey, 'lastName']}
                                             rules={[
                                                 {
                                                     required: true,
                                                     message: 'Введіть прізвище'
+                                                },
+                                                {
+                                                    max: 99,
+                                                    message: 'Максимальна довжина 100 символів'
                                                 }
                                             ]}
                                         >
                                             <Input placeholder="Прізвище" />
+                                        </Form.Item>
+                                    </Col>
+                                    <Col xs={12} sm={12} lg={7}>
+                                        <Form.Item
+                                            {...field}
+                                            name={[field.name, 'firstName']}
+                                            fieldKey={[field.fieldKey, 'firstName']}
+                                            rules={[
+                                                {
+                                                    required: true,
+                                                    message: 'Введіть ім\'я'
+                                                },
+                                                {
+                                                    max: 99,
+                                                    message: 'Максимальна довжина 100 символів'
+                                                }
+                                            ]}
+                                        >
+                                            <Input placeholder="Ім'я" />
                                         </Form.Item>
                                     </Col>
                                     <Col xs={23} sm={23} lg={9}>
@@ -137,7 +158,13 @@ const ListForm = ({ initialData, onSubmit, loading }: ListFormProps) => {
                                 </Row>
                             ))}
                             <Form.Item>
-                                <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+                                <Button
+                                    type="dashed"
+                                    onClick={() => add()}
+                                    block
+                                    icon={<PlusOutlined />}
+                                    disabled={form.getFieldValue("members") && form.getFieldValue("members").length > MAX_MEMBERS}
+                                >
                                     Додати чергового
                                 </Button>
                             </Form.Item>
@@ -145,7 +172,7 @@ const ListForm = ({ initialData, onSubmit, loading }: ListFormProps) => {
                     )}
                 </Form.List>
             </Form>
-        </div>
+        </div >
     );
 };
 
