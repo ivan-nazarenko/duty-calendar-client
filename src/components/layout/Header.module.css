@@ -4,6 +4,9 @@
     align-content: center;
     padding: 20px 100px;
     background-color: #fff;
+    -webkit-box-shadow: 0 1px 3px rgba(57, 63, 72, 0.1);
+    -moz-box-shadow: 0 1px 3px rgba(57, 63, 72, 0.1);
+    box-shadow: 0 1px 3px rgba(57, 63, 72, 0.1);
 }
 
 .sideMenuButton {
@@ -29,24 +32,19 @@
 @media (max-width: 991px) {
     .homeHeader {
         padding: 20px 15px;
-        justify-content: center;
+        justify-content: start;
     }
-
     .brand {
-        padding: 0;
-        margin-right: auto;
+        padding: 0 10px;
     }
-
     .homeHeader nav {
         display: none;
     }
-
     .user {
         display: none;
     }
-
     .sideMenuButton {
         display: block;
-        margin-right: auto;
+        color: var(--font-color);
     }
 }
