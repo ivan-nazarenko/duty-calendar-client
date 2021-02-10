@@ -5,11 +5,14 @@ import { Spin, notification } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { createList, editList, getList } from '../services/list.service';
 import styles from './List.module.css';
+import AuthService from '../services/auth.service';
+import { useHistory } from 'react-router-dom';
 
 const List = () => {
+    let history = useHistory();
     const [list, setList] = useState<IList | null>(null);
     const [loading, setLoading] = useState(false);
-    const [listLoading, setListLoading] = useState(false);  
+    const [listLoading, setListLoading] = useState(false);
 
     useEffect(() => {
         (async () => {
@@ -19,7 +22,11 @@ const List = () => {
                 list.data.members.sort((a: ListMember, b: ListMember) => (a.id as number) - (b.id as number));
                 setList(list.data as IList);
                 setLoading(false);
-            } catch {
+            } catch (err) {
+                if (err.response.status === 401) {
+                    AuthService.logout();
+                    history.push('/');
+                }
                 setLoading(false);
             }
         })();
@@ -42,6 +49,11 @@ const List = () => {
                 message: 'Зміни збережено'
             });
         } catch (err) {
+            if (err.response.status === 401) {
+                AuthService.logout();
+                history.push('/');
+            }
+
             setListLoading(false);
             notification.error({
                 message: 'Під час збереження даних сталася помилка :('

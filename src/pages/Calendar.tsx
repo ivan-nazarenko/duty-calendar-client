@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { List, ListMember } from '../interfaces';
+import { ListMember } from '../interfaces';
 import { Spin } from 'antd';
 import { LoadingOutlined } from '@ant-design/icons';
 import { getList } from '../services/list.service';
@@ -10,6 +10,8 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 import styles from './Calendar.module.css';
 import useWindowDimensions from '../hooks/useWindowDimensions';
 import CalendarEvent, { createCalendar } from '../helpers/intex';
+import AuthService from '../services/auth.service';
+import { useHistory } from 'react-router-dom';
 
 moment.updateLocale("uk", {
     week: {
@@ -28,10 +30,11 @@ const localization: Messages = {
 const localizer = momentLocalizer(moment);
 
 const Calendar = () => {
+    let history = useHistory();
     const [events, setEvents] = useState<CalendarEvent[] | null>(null);
     const [title, setTitle] = useState('Календар чергування');
     const [loading, setLoading] = useState(false);
-    const { height, width } = useWindowDimensions();
+    const { width } = useWindowDimensions();
 
     useEffect(() => {
         (async () => {
@@ -43,7 +46,11 @@ const Calendar = () => {
                 setEvents(events);
                 setLoading(false);
             } catch (err) {
-                console.error(err);
+                if (err.response.status === 401) {
+                    AuthService.logout();
+                    history.push('/');
+                }
+
                 setLoading(false);
             }
         })();
