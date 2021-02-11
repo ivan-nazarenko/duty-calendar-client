@@ -24,7 +24,8 @@ const localization: Messages = {
     date: 'Дата',
     allDay: 'Увесь день',
     time: 'Час',
-    event: 'Чергові'
+    event: 'Чергові',
+    noEventsInRange: 'Додайте чергових'
 };
 
 const localizer = momentLocalizer(moment);
@@ -54,21 +55,23 @@ const Calendar = () => {
                 setLoading(false);
             }
         })();
-    }, []);
+    }, [width]);
 
     return (
         <div className={styles.calendarContainer}>
             <h1>
                 {
                     loading ?
-                        <Spin indicator={<LoadingOutlined style={{ fontSize: 15 }} spin />} /> :
+                        <Spin indicator={<LoadingOutlined style={{ fontSize: 25 }} spin />} /> :
                         title
                 }
             </h1>
             <div className={styles.сalendarBox}>
                 {
                     loading ?
-                        <Spin indicator={<LoadingOutlined style={{ fontSize: 30 }} spin />} /> :
+                        <div className={styles.calendarLoading}>
+                            <Spin indicator={<LoadingOutlined style={{ fontSize: 50 }} spin />} />
+                        </div> :
                         <BigCalendar
                             events={events ? events : []}
                             step={60}
