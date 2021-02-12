@@ -1,7 +1,9 @@
 import React from 'react';
-import { MailOutlined } from '@ant-design/icons';
-
+import { MailOutlined, ExportOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
 import styles from './EmailConfirmation.module.css';
+import AuthService from '../services/auth.service';
+
 
 type EmailConfirmationProps = {
     email: string;
@@ -16,6 +18,12 @@ const EmailConfirmation = ({ email }: EmailConfirmationProps) => {
             <span>
                 {`Посилання для підтвердження облікового запису було відправлено на ${email}`}
             </span>
+            <Button
+                type="default"
+                onClick={() => AuthService.logout()}
+            >
+                Вийти
+            </Button>
         </div>
     );
 };

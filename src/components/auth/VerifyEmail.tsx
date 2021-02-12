@@ -39,7 +39,7 @@ const VerifyEmail = () => {
                                 icon={<SmileOutlined />}
                                 title="Email успішно підтверджено"
                                 extra={
-                                    <Button type="primary">
+                                    <Button type="default">
                                         <Link to="/">
                                             На головну
                                         </Link>
@@ -51,7 +51,7 @@ const VerifyEmail = () => {
                                 title="Не вдалося підтвердити email"
                                 subTitle="Спробуйте прейти за посиланням знову або створінь новий акаунт"
                                 extra={[
-                                    <Button type="primary" key="console">
+                                    <Button type="default" key="console">
                                         <Link to="/">
                                             Увійти
                                         </Link>
