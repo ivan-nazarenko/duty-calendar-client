@@ -33,6 +33,8 @@ const List = () => {
     }, []);
 
     const onSubmit = async (newList: IList) => {
+        console.log(newList);
+
         newList.members.forEach((item, i) => {
             if (!item.email) {
                 delete newList.members[i].email;

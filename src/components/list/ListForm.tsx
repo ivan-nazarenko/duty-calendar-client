@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import { Form, Input, Button, Space, Row, Col, Divider, notification } from 'antd';
+import { Form, Input, Button, Row, Col, Divider, notification, Checkbox } from 'antd';
 import { MinusCircleOutlined, PlusOutlined, SaveOutlined } from '@ant-design/icons';
 import styles from './ListForm.module.css';
 import { List } from '../../interfaces';
-import { validationMessages } from '../../helpers/intex';
+import { validationMessages } from '../../helpers';
 
 const MAX_MEMBERS = 100;
 
@@ -34,12 +34,12 @@ const ListForm = ({ initialData, onSubmit, loading }: ListFormProps) => {
                 autoComplete="off"
                 validateMessages={validationMessages}
                 initialValues={
-                    initialData ?
-                        {
+                    initialData
+                        ? {
                             name: initialData.name,
                             members: initialData.members
-                        } :
-                        {
+                        }
+                        : {
                             name: 'Новий Список'
                         }
                 }
@@ -99,7 +99,7 @@ const ListForm = ({ initialData, onSubmit, loading }: ListFormProps) => {
                     {(fields, { add, remove }) => (
                         <>
                             {fields.map(field => (
-                                <Row key={field.key} style={{ display: 'flex', marginBottom: 8 }} gutter={5} >
+                                <Row className={styles.formItem} key={field.key} style={{ display: 'flex', marginBottom: 8 }} gutter={5} >
                                     <Col xs={12} sm={12} lg={7}>
                                         <Form.Item
                                             {...field}
@@ -155,6 +155,30 @@ const ListForm = ({ initialData, onSubmit, loading }: ListFormProps) => {
                                     <Col xs={1} sm={1} lg={1}>
                                         <MinusCircleOutlined className={styles.deleteMember} onClick={() => remove(field.name)} />
                                     </Col>
+                                    <Row className={styles.flags}>
+                                        <Col>
+                                            <Form.Item
+                                                {...field}
+                                                name={[field.name, 'isPrivileged']}
+                                                fieldKey={[field.fieldKey, 'isPrivileged']}
+                                                valuePropName="checked"
+                                                className={styles.flagInput}
+                                            >
+                                                <Checkbox>Не чергує</Checkbox>
+                                            </Form.Item>
+                                        </Col>
+                                        <Col>
+                                            <Form.Item
+                                                {...field}
+                                                name={[field.name, 'isNonResident']}
+                                                fieldKey={[field.fieldKey, 'isNonResident']}
+                                                valuePropName="checked"
+                                                className={styles.flagInput}
+                                            >
+                                                <Checkbox>Іногородній</Checkbox>
+                                            </Form.Item>
+                                        </Col>
+                                    </Row>
                                 </Row>
                             ))}
                             <Form.Item>

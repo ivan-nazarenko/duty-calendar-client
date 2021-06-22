@@ -3,6 +3,8 @@ export interface ListMember {
     firstName: string;
     lastName: string;
     email?: string | null;
+    isPrivileged: boolean,
+    isNonResident: boolean,
 }
 
 export interface List {

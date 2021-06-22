@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, Alert } from 'antd';
 import { MailOutlined, LockOutlined } from '@ant-design/icons';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import styles from './AuthForm.module.css';
 import AuthService from '../../services/auth.service';
-import { validationMessages } from '../../helpers/intex';
+import { validationMessages } from '../../helpers';
 
 type LoginData = {
     email: string;
@@ -20,7 +20,7 @@ const LoginForm = () => {
         setLoading(true);
 
         try {
-            await  AuthService.login(email, password);
+            await AuthService.login(email, password);
             history.push("/home/calendar");
         } catch {
             setLoading(false);
@@ -69,7 +69,7 @@ const LoginForm = () => {
                 <Form.Item className={styles.submitContainer}>
                     <Button type="primary" htmlType="submit" className={styles.loginFormButton} loading={loading}>
                         Увійти
-                </Button>
+                    </Button>
                 </Form.Item>
             </Form>
         </>

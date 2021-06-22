@@ -9,7 +9,7 @@ import 'moment/locale/uk';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import styles from './Calendar.module.css';
 import useWindowDimensions from '../hooks/useWindowDimensions';
-import CalendarEvent, { createCalendar } from '../helpers/intex';
+import CalendarEvent, { createCalendar } from '../helpers';
 import AuthService from '../services/auth.service';
 import { useHistory } from 'react-router-dom';
 

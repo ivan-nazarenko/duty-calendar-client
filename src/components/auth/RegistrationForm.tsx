@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Form, Input, Button, Alert } from 'antd';
 import { MailOutlined, LockOutlined } from '@ant-design/icons';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import styles from './AuthForm.module.css';
 import AuthService from '../../services/auth.service';
-import { validationMessages } from '../../helpers/intex';
+import { validationMessages } from '../../helpers';
 
 
 type User = {
@@ -111,7 +111,7 @@ const RegistrationForm = () => {
                 <Form.Item className={styles.submitContainer}>
                     <Button type="primary" htmlType="submit" className={styles.loginFormButton} loading={loading}>
                         Зареєструватись
-                </Button>
+                    </Button>
                 </Form.Item>
             </Form>
         </>
