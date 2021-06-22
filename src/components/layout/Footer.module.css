@@ -19,6 +19,13 @@
 
 .dev a {
   margin-left: 15px;
+  color: var(--font-color);
+}
+
+.dev a:hover {
+  color: var(--hover-color);
+  -webkit-transition: color 0.3s;
+  transition: color 0.3s;
 }
 
 @media (max-width: 1200px) {
