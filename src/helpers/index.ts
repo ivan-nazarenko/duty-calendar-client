@@ -25,7 +25,7 @@ export default class CalendarEvent {
     }
 };
 
-export const createCalendar = (members: ListMember[], startDate: Date): CalendarEvent[] => {
+export const createCalendar = (members: ListMember[], startDate?: Date): CalendarEvent[] => {
     let result: CalendarEvent[] = [];
 
     members.sort((a, b) => (a.id as number) - (b.id as number));
@@ -40,7 +40,7 @@ export const createCalendar = (members: ListMember[], startDate: Date): Calendar
 
 
     for (let i = 0; i <= 30; i++) {
-        let day = new Date(startDate);
+        let day = startDate ? new Date(startDate) : new Date();
         day.setDate(day.getDate() + i);
 
         if (day.getDay() === 5) {
