@@ -42,7 +42,7 @@ const Calendar = () => {
             setLoading(true);
             try {
                 const res = await getList();
-                let events = createCalendar((res.data.members as ListMember[]));
+                let events = createCalendar((res.data.members as ListMember[]), res.data.createdAt);
                 setTitle(res.data.name);
                 setEvents(events);
                 setLoading(false);

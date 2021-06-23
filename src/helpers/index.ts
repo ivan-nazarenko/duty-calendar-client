@@ -25,27 +25,47 @@ export default class CalendarEvent {
     }
 };
 
-export const createCalendar = (members: ListMember[]): CalendarEvent[] => {
+export const createCalendar = (members: ListMember[], startDate: Date): CalendarEvent[] => {
     let result: CalendarEvent[] = [];
 
     members.sort((a, b) => (a.id as number) - (b.id as number));
-    let currentMonth = new Date().getMonth();
-    let currentYear = new Date().getFullYear();
-    let daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+    members = members.filter((item) => !item.isPrivileged)
 
     let currentIndex = 0;
+    let fridayIndex = 0;
 
-    for (let i = 1; i <= daysInMonth; i++) {
-        let day = new Date(currentYear, currentMonth, i);
-        if (day.getDay() !== 6 && day.getDay() !== 0) {
-            if (currentIndex === members.length) {
+    let availableMembers = members.filter(item => !item.isPrivileged);
+    let fridayMembers = availableMembers.filter(item => !item.isNonResident);
+
+
+    for (let i = 0; i <= 30; i++) {
+        let day = new Date(startDate);
+        day.setDate(day.getDate() + i);
+
+        if (day.getDay() === 5) {
+            if (fridayIndex >= fridayMembers.length) {
+                fridayIndex = 0;
+            }
+
+            result.push(new CalendarEvent(`${fridayMembers[fridayIndex].lastName} ${fridayMembers[fridayIndex].firstName[0]}.`, day, day, true));
+            fridayIndex++;
+
+            if (fridayIndex >= fridayMembers.length) {
+                fridayIndex = 0;
+            }
+
+            result.push(new CalendarEvent(`${fridayMembers[fridayIndex].lastName} ${fridayMembers[fridayIndex].firstName[0]}.`, day, day, true));
+            fridayIndex++;
+        } else if (day.getDay() !== 6 && day.getDay() !== 0) {
+            if (currentIndex >= availableMembers.length) {
                 currentIndex = 0;
             }
 
             result.push(new CalendarEvent(`${members[currentIndex].lastName} ${members[currentIndex].firstName[0]}.`, day, day, true));
             currentIndex++;
 
-            if (currentIndex === members.length) {
+            if (currentIndex >= availableMembers.length) {
                 currentIndex = 0;
             }
 
@@ -53,6 +73,7 @@ export const createCalendar = (members: ListMember[]): CalendarEvent[] => {
             currentIndex++;
         }
     }
+
 
     return result;
 };
