@@ -14,7 +14,9 @@ const Home = () => {
 
     const onLogout = () => {
         AuthService.logout();
+        localStorage.clear();
         history.push('/');
+        window.location.reload();
     };
 
     return (
