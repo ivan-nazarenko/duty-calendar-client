@@ -25,7 +25,14 @@ const localization: Messages = {
     allDay: 'Увесь день',
     time: 'Час',
     event: 'Чергові',
-    noEventsInRange: 'Додайте чергових'
+    noEventsInRange: 'Додайте чергових',
+    day: 'День',
+    next: 'Далі',
+    previous: 'Назад',
+    month: 'Місяць',
+    today: 'Сьогодні',
+    week: 'Тиждень',
+    agenda: 'Підсумок',
 };
 
 const localizer = momentLocalizer(moment);

@@ -1,5 +1,5 @@
 .rbc-toolbar {
-    display: none !important;
+    background-color: #fafafa;
 }
 
 .rbc-event {
@@ -11,4 +11,10 @@ span.rbc-agenda-empty {
     padding: 10px 10px 0 10px;
     text-align: center;
     font-size: 16px;
+}
+
+@media (max-width: 768px) {
+    .rbc-toolbar {
+        display: none !important;
+    }
 }
